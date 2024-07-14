@@ -9,7 +9,7 @@ const Phone = () => {
       <div className="phone-screen">
         <div className="camera-cutout" />
         <Header data={phoneData} />
-        <Body />
+        <Body phoneData={phoneData} />
         <div className="message-box">
           <input type="text" placeholder="Type a message..." />
           <button>
