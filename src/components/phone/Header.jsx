@@ -1,20 +1,11 @@
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Avatar from "../../assets/avatar.jpg";
 import { Button } from "@mui/material";
+import PropTypes from "prop-types";
 
-const Header = () => {
-  const phoneData = [
-    {
-      sender: "Samuel Green",
-      status: "Available to Walk",
-      conversation: {
-        sender: [["That sounds great. I’d be happy with that.", "Could you send over some pictures of your dog, please?"], ["She looks so happy! The time we discussed works. How long shall I take her out for?"]],
-        images: [],
-        recipient: ["Here are a few pictures. She’s a happy girl!", "Can you make it?"],
-      },
-    },
-  ];
+const Header = ({ data }) => {
+  Header.propTypes = { data: PropTypes.object.isRequired };
 
   return (
     <div className="contact-header">
@@ -34,17 +25,18 @@ const Header = () => {
             px: 2.5,
             m: 0,
           }}>
-          <ArrowBackIosNewIcon />
+          <KeyboardArrowLeftIcon />
         </Button>
 
         <img src={Avatar} alt="Samuel Green" />
         <div className="container-name-status">
-          <span className="contact-name">{phoneData[0].sender}</span>
-          <span className="contact-status">{phoneData[0].status}</span>
+          <span className="contact-name">{data[0].sender}</span>
+          <span className="contact-status">{data[0].status}</span>
         </div>
       </div>
-      <MoreVertIcon />
+      <MoreVertIcon fontSize="small" />
     </div>
   );
 };
+
 export default Header;

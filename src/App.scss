@@ -1,10 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+$colors: (
+  background: hsl(270, 20%, 96%),
+  Violet: hsl(276, 100%, 81%),
+  // sub-heading at the top of the app UI
+  Magenta: hsl(293, 100%, 63%),
+  Light-Violet: hsl(264, 100%, 61%),
+  sender: hsl(276, 55%, 52%),
+  receiver: hsl(271, 15%, 43%),
+  radio-button-outline: hsl(289, 100%, 72%),
+  placeholder: hsl(206, 6%, 79%),
+  submit: hsl(271, 36%, 24%),
+  heading: hsl(271, 36%, 24%),
+  paragraph: hsl(270, 7%, 64%),
+);
+
+@mixin backgroundGradient($arg) {
+  background: linear-gradient($arg, map-get($colors, Light-Violet), map-get($colors, Magenta));
+}
+
 body {
   margin: 0;
   background-color: #123;
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  box-sizing: border-box;
 }
 
-@mixin backgroundGradient($arg) {
-  background: linear-gradient($arg, #8b3aff, #e044ff);
+::placeholder {
+  color: map-get($colors, placeholder);
 }
 
 .phone {
@@ -14,7 +39,24 @@ body {
   width: 20rem;
 
   .phone-screen {
-    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+    background-color: map-get($colors, background);
+    width: 100%;
+
+    .camera-cutout {
+      position: absolute;
+      top: 0;
+      left: 25%;
+      right: 25%;
+      background: white;
+      width: 50%;
+      height: 1.25rem;
+      border-radius: 0 0 1rem 1rem;
+    }
 
     .contact-header {
       display: grid;
@@ -22,10 +64,11 @@ body {
       align-items: center;
       color: white;
       @include backgroundGradient(90deg);
+      padding-top: 1rem;
+      border-radius: 0 0 0.5rem 0.5rem;
 
       .contact-info-container {
         display: flex;
-        justify-content: space-arounds;
         align-items: center;
         padding: 1rem;
 
@@ -33,6 +76,70 @@ body {
           border: 2px solid white;
           border-radius: 100dvw;
           width: 2.25rem;
+        }
+      }
+    }
+
+    .phone-body {
+      padding: 1rem;
+
+      .received-message,
+      .sent-message {
+        padding: 1rem;
+        margin: 1rem 0;
+        width: fit-content;
+        border-radius: 1rem;
+      }
+
+      .received-message {
+        background: white;
+        color: map-get($colors, sender);
+        border-bottom-left-radius: 0.3rem !important;
+      }
+
+      .sent-message {
+        background: white;
+        color: map-get($colors, receiver);
+        border-bottom-right-radius: 0.3rem !important;
+        filter: drop-shadow(0rem 0.25rem 0.25rem #00000012);
+      }
+    }
+
+    .message-box {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: calc(100% - 2rem);
+      padding: 1rem;
+
+      input {
+        width: 100%;
+        height: 3rem;
+        border-radius: 1000rem;
+        border: none;
+        padding-left: 1.5rem;
+      }
+
+      button {
+        position: absolute;
+        display: grid;
+        place-items: center;
+        right: 1.25rem;
+        border: none;
+        border-radius: 100dvw;
+        cursor: pointer;
+        height: 2.5rem;
+        width: 2.5rem;
+        background-color: map-get($colors, submit);
+
+        &:hover {
+          filter: brightness(1.5);
+          transition: 250ms ease-in-out;
+        }
+
+        svg {
+          fill: white;
         }
       }
     }

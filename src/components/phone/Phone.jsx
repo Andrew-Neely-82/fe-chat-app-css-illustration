@@ -1,4 +1,6 @@
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import Header from "./Header";
+import Body from "./Body";
 
 const Phone = () => {
   const phoneData = [
@@ -16,18 +18,17 @@ const Phone = () => {
   return (
     <div className="phone">
       <div className="phone-screen">
-        <Header />
+        <div className="camera-cutout" />
+
+        <Header data={phoneData}/>
+        <Body />
+        <div className="message-box">
+          <input type="text" placeholder="Type a message..." />
+          <button>
+            <NavigateNextIcon />
+          </button>
+        </div>
       </div>
-      {/* <div>
-        {phoneData[0].conversation.sender[0].map((el, index) => (
-          <span key={index}>{el}</span>
-          ))}
-          </div>
-          <div>
-          {phoneData[0].conversation.sender[1].map((el, index) => (
-            <span key={index}>{el}</span>
-            ))}
-            </div> */}
     </div>
   );
 };
