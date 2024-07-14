@@ -82,26 +82,51 @@ body {
 
     .phone-body {
       padding: 1rem;
+      padding-bottom: 0;
 
-      .received-message,
-      .sent-message {
-        padding: 1rem;
-        margin: 1rem 0;
-        width: fit-content;
-        border-radius: 1rem;
+      .received-messages-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+
+        .received-message {
+          background: white;
+          color: map-get($colors, sender);
+          border-bottom-left-radius: 0.3rem !important;
+        }
       }
 
-      .received-message {
-        background: white;
-        color: map-get($colors, sender);
-        border-bottom-left-radius: 0.3rem !important;
+      .sent-messages-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 1rem;
+        margin-block: 1rem;
+
+        .sent-message {
+          background: white;
+          color: map-get($colors, receiver);
+          border-bottom-right-radius: 0.3rem !important;
+          filter: drop-shadow(0rem 0.25rem 0.25rem #00000012);
+        }
       }
 
-      .sent-message {
-        background: white;
-        color: map-get($colors, receiver);
-        border-bottom-right-radius: 0.3rem !important;
-        filter: drop-shadow(0rem 0.25rem 0.25rem #00000012);
+      .sent-images {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+
+        img {
+          width: 4rem;
+          border-radius: 1rem;
+          transition: 250ms ease;
+          cursor: pointer;
+
+          &:hover {
+            scale: 1.1;
+          }
+        }
       }
     }
 
@@ -156,15 +181,11 @@ body {
   }
 }
 
-// .btn {
-//   border: none;
-//   background: none;
-//   padding: 0;
-//   margin: 0;
-//   fill: white;
-//   cursor: pointer;
-
-//   svg {
-//     fill: white;
-//   }
-// }
+.received-message,
+.sent-message {
+  max-width: 60%;
+  border-radius: 1rem;
+  font-size: 12px;
+  padding: 0.75rem;
+  margin: 0;
+}

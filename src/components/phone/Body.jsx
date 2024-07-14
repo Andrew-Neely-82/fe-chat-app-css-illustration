@@ -1,36 +1,38 @@
+import { phoneData } from "../../data/data";
 import PropTypes from "prop-types";
 
 const Body = () => {
-  const phoneData = [
-    {
-      sender: "Samuel Green",
-      status: "Available to Walk",
-      conversation: {
-        sender: [["That sounds great. I’d be happy with that.", "Could you send over some pictures of your dog, please?"], ["She looks so happy! The time we discussed works. How long shall I take her out for?"]],
-        images: [],
-        recipient: ["Here are a few pictures. She’s a happy girl!", "Can you make it?"],
-      },
-    },
-  ];
-
   const ReceivedMessage = ({ message }) => <p className="received-message">{message}</p>;
   const SentMessage = ({ message }) => <p className="sent-message">{message}</p>;
-  ReceivedMessage.propTypes = { message: PropTypes.string.isRequired };
-  SentMessage.propTypes = { message: PropTypes.string.isRequired };
-  
+  const SentImages = ({ data }) => (
+    <div className="sent-images">
+      {data[0].conversation.images.map((img, key) => (
+        <img src={img} alt={img} key={key} />
+      ))}
+    </div>
+  );
+
+  ReceivedMessage.propTypes = { message: PropTypes.any.isRequired };
+  SentMessage.propTypes = { message: PropTypes.any.isRequired };
+  SentImages.propTypes = { data: PropTypes.any };
+
   return (
     <div className="phone-body">
-      <ReceivedMessage message={phoneData[0].conversation.sender[0][0]} />
-
-      <ReceivedMessage message={phoneData[0].conversation.sender[0][1]} />
-
-      {/* images of dogs */}
-      <SentMessage message={phoneData[0].conversation.recipient[0]} />
- 
-      <SentMessage message={phoneData[0].conversation.recipient[1]} />
-
-      <ReceivedMessage message={phoneData[0].conversation.sender[1]} />
+      <div className="received-messages-container">
+        <ReceivedMessage message={phoneData[0].conversation.sender[0][0]} />
+        <ReceivedMessage message={phoneData[0].conversation.sender[0][1]} />
+      </div>
+      <div className="sent-messages-container">
+        <SentImages data={phoneData} />
+        <SentMessage message={phoneData[0].conversation.recipient[0]} />
+        <SentMessage message={phoneData[0].conversation.recipient[0]} />
+        <SentMessage message={phoneData[0].conversation.recipient[1]} />
+      </div>
+      <div className="received-messages-container">
+        <ReceivedMessage message={phoneData[0].conversation.sender[1]} />
+      </div>
     </div>
   );
 };
+
 export default Body;
