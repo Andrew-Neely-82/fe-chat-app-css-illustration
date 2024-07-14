@@ -11,5 +11,9 @@ export const phoneData = [
       images: [dog1, dog2, dog3],
       recipient: ["Here are a few pictures. She’s a happy girl!", "Can you make it?"],
     },
+    services: [
+      { service: "30 minute walk", price: "$29" },
+      { service: "1 hour walk", price: "$49" },
+    ],
   },
 ];

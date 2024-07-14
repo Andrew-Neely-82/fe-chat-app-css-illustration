@@ -21,7 +21,7 @@ $colors: (
 
 body {
   margin: 0;
-  background-color: #123;
+  background: #fafafa;
   font-family: "Rubik", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
@@ -32,17 +32,62 @@ body {
   color: map-get($colors, placeholder);
 }
 
+main {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 100dvh;
+  overflow: hidden;
+
+  $blob-width: 60rem;
+  $blob-lateral: -9.5rem;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -10;
+    width: $blob-width;
+    height: 87dvh;
+  }
+
+  &::before {
+    top: 0;
+    left: $blob-lateral;
+    @include backgroundGradient(0deg);
+    border-radius: 0 0 50rem 50rem;
+  }
+
+  &::after {
+    bottom: 0;
+    right: calc($blob-lateral + $blob-lateral + 3.5rem);
+    background: #f9f4fa;
+    border-radius: 100rem 100rem 0 0;
+  }
+}
+
+.phone-section {
+  display: grid;
+  place-content: center;
+  justify-content: end;
+  margin-right: 12rem;
+}
+
 .phone {
+  display: grid;
+  place-items: center;
   background: white;
   border: 1rem solid white;
-  border-radius: 2rem;
-  width: 20rem;
+  border-radius: 3rem;
+  width: 22rem;
+  height: fit-content;
+  filter: drop-shadow(1rem 1rem 2rem #00000012);
 
   .phone-screen {
     display: flex;
     flex-direction: column;
     position: relative;
-    border-radius: 1rem;
+    border-radius: 2rem;
     overflow: hidden;
     background-color: map-get($colors, background);
     width: 100%;
@@ -54,8 +99,8 @@ body {
       right: 25%;
       background: white;
       width: 50%;
-      height: 1.25rem;
-      border-radius: 0 0 1rem 1rem;
+      height: 1.5rem;
+      border-radius: 0 0 1.25rem 1.25rem;
     }
 
     .contact-header {
@@ -64,7 +109,7 @@ body {
       align-items: center;
       color: white;
       @include backgroundGradient(90deg);
-      padding-top: 1rem;
+      padding-top: 1.5rem;
       border-radius: 0 0 0.5rem 0.5rem;
 
       .contact-info-container {
@@ -77,6 +122,22 @@ body {
           border-radius: 100dvw;
           width: 2.25rem;
         }
+
+        .container-name-status {
+          display: grid;
+          grid-template-columns: repeat(1, 1fr);
+          margin-left: 1rem;
+
+          .contact-status {
+            opacity: 0.5;
+            font-size: 12px;
+          }
+        }
+      }
+
+      .more-section {
+        display: flex;
+        justify-content: center;
       }
     }
 
@@ -91,7 +152,7 @@ body {
         gap: 1rem;
 
         .received-message {
-          background: white;
+          background: #ede4f4;
           color: map-get($colors, sender);
           border-bottom-left-radius: 0.3rem !important;
         }
@@ -128,6 +189,47 @@ body {
           }
         }
       }
+
+      .services-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-top: 1rem;
+
+        .services-bubble {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          color: white;
+          @include backgroundGradient(270deg);
+          border-radius: 0.75rem;
+          border-bottom-left-radius: 0.25rem;
+          padding: 0.75rem;
+          width: 70%;
+
+          div {
+            display: flex;
+            align-items: center;
+            align-content: center;
+            font-size: 12px;
+
+            input {
+              margin: 0;
+            }
+
+            label {
+              padding-inline: 0.5rem;
+              font-size: 12px;
+            }
+          }
+
+          span {
+            font-weight: 600;
+            padding-inline: 1rem;
+          }
+        }
+      }
     }
 
     .message-box {
@@ -137,6 +239,8 @@ body {
       align-items: center;
       width: calc(100% - 2rem);
       padding: 1rem;
+      z-index: 10;
+      background: map-get($colors, background);
 
       input {
         width: 100%;
@@ -171,21 +275,78 @@ body {
   }
 }
 
-.container-name-status {
+.hero {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  margin-left: 1rem;
+  place-content: center;
+  align-items: start;
+  justify-content: start;
 
-  .contact-status {
-    opacity: 0.5;
+  .title {
+    font-size: 4rem;
+    font-weight: 500;
+    color: map-get($colors, heading);
+    margin: 0;
+  }
+
+  .summary {
+    color: map-get($colors, paragraph);
+    width: 42rem;
+    font-size: 1.5rem;
+    line-height: 1.75;
   }
 }
 
 .received-message,
 .sent-message {
-  max-width: 60%;
+  max-width: 54%;
   border-radius: 1rem;
   font-size: 12px;
   padding: 0.75rem;
   margin: 0;
+}
+
+.MuiSvgIcon-root,
+input[type="radio"] {
+  cursor: pointer;
+
+  &:hover {
+    transition: 250ms ease all;
+    scale: 1.1;
+  }
+}
+
+.slide-top1 {
+  animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: 1s;
+}
+
+.slide-top2 {
+  animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: 2s;
+}
+
+.slide-top3 {
+  animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: 4s;
+}
+
+.slide-top4 {
+  animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: 6s;
+}
+
+.slide-top5 {
+  animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: 8s;
+}
+
+
+
+@keyframes slide-top {
+  0% {
+    transform: translateY(1000px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
