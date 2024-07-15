@@ -43,7 +43,7 @@ main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   height: 100dvh;
-  overflow: hidden;
+  overflow-y: scroll;
 
   $blob-width: 60rem;
   $blob-lateral: -9.5rem;
@@ -55,8 +55,14 @@ main {
     z-index: -10;
     width: $blob-width;
     height: 87dvh;
+    overflow: hidden;
 
-    @media screen and (max-width: 430px) {
+    @media screen and (max-width: 1920px) {
+      width: 32.5dvw;
+      height: 90dvh;
+    }
+
+    @media screen and (max-width: 1024px) {
       height: 50dvh;
       width: 100dvw;
     }
@@ -68,7 +74,12 @@ main {
     @include backgroundGradient(0deg);
     border-radius: 0 0 50rem 50rem;
 
-    @media screen and (max-width: 430px) {
+    @media screen and (max-width: 1920px) {
+      left: -10rem;
+    }
+
+    @media screen and (max-width: 1024px) {
+      width: 75%;
       left: -25%;
     }
   }
@@ -78,14 +89,23 @@ main {
     right: calc($blob-lateral + $blob-lateral + 3.5rem);
     background: #f9f4fa;
     border-radius: 100rem 100rem 0 0;
+
+    @media screen and (max-width: 1920px) {
+      right: -10rem;
+    }
+
+    @media screen and (max-width: 1024px) {
+      width: 75%;
+      right: -25%;
+    }
   }
 
-  @media screen and (max-width: 430px) {
+  @media screen and (max-width: 1024px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow-y: scroll;
+    // overflow-y: scroll;
     bottom: 0;
   }
 }
@@ -94,14 +114,16 @@ main {
   display: grid;
   place-content: center;
   justify-content: end;
-  margin-right: 12rem;
+  // margin-right: 12rem;
+  margin-right: 7.5dvw;
+  height: 100%;
+  margin-block: auto;
 
-  @media screen and (max-width: 376px) {
-    margin-top: 16rem !important;
+  @media screen and (max-width: 1920px) {
+    scale: 0.75;
   }
 
-  @media screen and (max-width: 430px) {
-    scale: 0.75;
+  @media screen and (max-width: 1024px) {
     margin: 0;
     margin-top: 10rem;
   }
@@ -123,14 +145,13 @@ main {
     display: flex;
     flex-direction: column;
     position: relative;
-    border-radius: 2rem;
     overflow: hidden;
     background-color: map-get($colors, background);
     width: 100%;
 
     .camera-cutout {
       position: absolute;
-      top: 0;
+      top: 0px;
       left: 25%;
       right: 25%;
       background: white;
@@ -317,12 +338,11 @@ main {
   align-items: start;
   justify-content: start;
 
-  @media screen and (max-width: 430px) {
+  @media screen and (max-width: 1024px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // scale: 0.75;
     width: 100%;
     padding-bottom: 2rem;
   }
@@ -333,8 +353,12 @@ main {
     color: map-get($colors, heading);
     margin: 0;
 
-    @media screen and (max-width: 430px) {
+    @media screen and (max-width: 1024px) {
       font-size: 3rem;
+    }
+
+    @media screen and (max-width: 320px) {
+      font-size: 2rem;
     }
   }
 
@@ -344,17 +368,15 @@ main {
     font-size: 1.5rem;
     line-height: 1.75;
 
-    @media screen and (max-width: 376px) {
-      font-size: 16px !important;
-      width: 22rem !important;
-      margin-inline: 72rem !important;
-      padding-inline: 1rem !important;
-    }
-
-    @media screen and (max-width: 430px) {
+    @media screen and (max-width: 1024px) {
       font-size: 17px;
       text-align: center;
       width: 21rem;
+    }
+
+    @media screen and (max-width: 320px) {
+      font-size: 1rem;
+      width: 75%;
     }
   }
 }
