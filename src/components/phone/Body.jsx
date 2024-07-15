@@ -14,13 +14,13 @@ const Body = ({ phoneData }) => {
       // Show loading bubble
       const loadingTimer = setTimeout(() => {
         setIsLoading(true);
-      }, 2000);
+      }, 1000);
 
       // Show actual message
       const messageTimer = setTimeout(() => {
         setIsLoading(false);
         setCurrentStep((prevStep) => prevStep + 1);
-      }, 3000);
+      }, 4000);
 
       return () => {
         clearTimeout(loadingTimer);
