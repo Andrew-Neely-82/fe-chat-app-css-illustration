@@ -37,27 +37,16 @@ const Body = ({ phoneData }) => {
     );
   };
 
-  Loading.propTypes = {
-    style: PropTypes.object.isRequired,
-  };
+  Loading.propTypes = { style: PropTypes.object.isRequired };
 
   const loadingStyle = {
-    display: "flex",
-    height: "2rem",
-    margin: "1rem 0px 0px 0",
-    alignContent: "center",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    width: "5rem",
-    borderRadius: "0.75rem",
-    padding: "0",
+
   };
 
   return (
     <div className="phone-body">
       <div className="received-messages-container">
         {currentStep === 0 && isLoading ? <Loading style={loadingStyle} /> : currentStep >= 1 ? <ReceivedMessage className={"slide-top1"} message={phoneData[0].conversation.sender[0][0]} /> : null}
-
         {currentStep === 1 && isLoading ? <Loading style={loadingStyle} /> : currentStep >= 2 ? <ReceivedMessage className={"slide-top2"} message={phoneData[0].conversation.sender[0][1]} /> : null}
       </div>
       <div className="sent-messages-container">
@@ -69,7 +58,6 @@ const Body = ({ phoneData }) => {
             <SentMessage className={"slide-top3"} message={phoneData[0].conversation.recipient[0]} />
           </>
         ) : null}
-
         {currentStep === 3 && isLoading ? <Loading style={loadingStyle} /> : currentStep >= 4 ? <SentMessage className={"slide-top4"} message={phoneData[0].conversation.recipient[1]} /> : null}
       </div>
       <div className="received-messages-container">{currentStep === 4 && isLoading ? <Loading style={loadingStyle} /> : currentStep >= 5 ? <ReceivedMessage className={"slide-top5"} message={phoneData[0].conversation.sender[1]} /> : null}</div>
@@ -78,8 +66,6 @@ const Body = ({ phoneData }) => {
   );
 };
 
-Body.propTypes = {
-  phoneData: PropTypes.array.isRequired,
-};
+Body.propTypes = { phoneData: PropTypes.array.isRequired };
 
 export default Body;

@@ -428,9 +428,16 @@ input[type="radio"] {
  */
 
 .stage {
-  margin-left: 1rem;
+  display: grid;
+  place-items: center;
   background: #ede4f4;
-  width: fit-content;
+  width: 5rem;
+  height: 2rem;
+  border-radius: 0.75rem;
+  padding: 0;
+  margin: 1rem 0px 0px 0;
+  animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .dot-pulse {
@@ -502,5 +509,16 @@ input[type="radio"] {
   60%,
   100% {
     box-shadow: 10014px 0 0 -5px;
+  }
+}
+
+@keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
   }
 }
