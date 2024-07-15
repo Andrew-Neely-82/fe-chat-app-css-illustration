@@ -16,11 +16,12 @@ const Body = ({ phoneData }) => {
         setIsLoading(true);
       }, 1000);
 
+      const timings = [4000, 4000, 6000, 2000, 5000, 2000]
       // Show actual message
       const messageTimer = setTimeout(() => {
         setIsLoading(false);
         setCurrentStep((prevStep) => prevStep + 1);
-      }, 4000);
+      }, timings[currentStep]);
 
       return () => {
         clearTimeout(loadingTimer);
@@ -39,9 +40,7 @@ const Body = ({ phoneData }) => {
 
   Loading.propTypes = { style: PropTypes.object.isRequired };
 
-  const loadingStyle = {
-
-  };
+  const loadingStyle = {};
 
   return (
     <div className="phone-body">
